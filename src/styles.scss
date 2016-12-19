@@ -108,6 +108,7 @@ body {
         overflow-x: hidden;
         overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
         background-color: #4F4F4F;
+        background-image: url("assets/sidebar-bg.png");
         color: #BBB;
         font-size: 12px;
     }
@@ -119,7 +120,7 @@ body {
     height: 60px;
     margin-bottom: 10px;
     padding: 10px;
-    background-color: #585858;
+    background-color: rgba(80,80,80,.7);
     /*box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,0.3)  ;*/
     text-align: center;
     display: table;
@@ -148,11 +149,12 @@ body {
     float: left;
     width: 100%;
     margin-bottom: 10px;
-    background-color: #585858;
+    background-color: rgba(80,80,80,.3);
     /*box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,0.3);*/
 }
 .nav-sidebar > li.item .nav-sidebar {
     background-color: #626262;
+    background-color: rgba(90,90,90,.3);
 }
 
 .nav-sidebar > li.caption {

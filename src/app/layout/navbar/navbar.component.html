@@ -13,8 +13,8 @@
         <b>{{brand}}</b>
       </a>
       <span class="pull-right">
-        <a href class="toggle-sidebar">
-          <i class="glyphicon glyphicon-menu-hamburger"></i>
+        <a class="toggle-sidebar" (click)="toggleExpand()">
+          <glyph [icon]="sidebarIcon"></glyph>
         </a>
       </span>
     </div>

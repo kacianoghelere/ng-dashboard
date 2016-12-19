@@ -5,8 +5,10 @@ import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { UtilModule } from './util/util.module';
 import { MainModule } from './main/main.module';
 import { UserModule } from './user/user.module';
+import { ExampleModule } from './example/example.module';
 
 import { routing } from './app.routing';
 
@@ -15,9 +17,6 @@ import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { MainContentComponent } from './layout/main-content/main-content.component';
 
 @NgModule({
-  declarations: [
-    AppComponent, NavbarComponent, SidebarComponent, MainContentComponent
-  ],
   imports: [
     BrowserModule,
     FormsModule,
@@ -26,8 +25,16 @@ import { MainContentComponent } from './layout/main-content/main-content.compone
     routing,
     FormsModule,
     ReactiveFormsModule,
+    UtilModule,
     UserModule,
-    MainModule
+    MainModule,
+    ExampleModule
+  ],
+  declarations: [
+    AppComponent,
+    NavbarComponent,
+    SidebarComponent,
+    MainContentComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

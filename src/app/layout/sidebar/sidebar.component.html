@@ -1,6 +1,7 @@
 <div class="nav nav-user">
     <div class="user-img">
-        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="64" height="64" class="img-responsive img-circle"
+        <img src="https://goo.gl/97tYRA" 
+            width="64" height="64" class="img-responsive img-circle"
             alt="Generic placeholder thumbnail">
     </div>
     <div class="user-detail">
@@ -10,20 +11,20 @@
 </div>
 
 <ul class="nav nav-sidebar">
-    <li class="caption">Caption</li>
-    <li class="item active"><a href="https://getbootstrap.com/examples/dashboard/#">Overview <span class="sr-only">(current)</span></a></li>
-    <li class="item">
-        <a href="https://getbootstrap.com/examples/dashboard/">Nav item again</a>
-    </li>
-    <li class="item">
-        <a href="https://getbootstrap.com/examples/dashboard/">One more nav</a>
-    </li>
-    <li class="item">
-        <a href="https://getbootstrap.com/examples/dashboard/">Another nav item</a>
-    </li>
-
     <li class="caption">
-        <i class="glyphicon glyphicon-dashboard"></i> Caption
+        <glyph icon="menu-hamburger"></glyph> Menu
+    </li>
+    <li class="item active">
+        <a href="https://getbootstrap.com/examples/dashboard/#">Overview <span class="sr-only">(current)</span></a
+    ></li>
+    <li class="item">
+        <a href="https://getbootstrap.com/examples/dashboard/">Nav item again</a>
+    </li>
+    <li class="item">
+        <a href="https://getbootstrap.com/examples/dashboard/">One more nav</a>
+    </li>
+    <li class="item">
+        <a href="https://getbootstrap.com/examples/dashboard/">Another nav item</a>
     </li>
     <li class="item">
         <a href="https://getbootstrap.com/examples/dashboard/">Nav item again</a>
@@ -34,17 +35,20 @@
     <li class="item">
         <a href="https://getbootstrap.com/examples/dashboard/">Another nav item</a>
     </li>
-
-    <li class="caption">
-        <i class="glyphicon glyphicon-dashboard"></i> Other Stuff
-    </li>
     <li class="item">
         <a href="https://getbootstrap.com/examples/dashboard/">Nav item again</a>
     </li>
     <li class="item">
-        <a href="https://getbootstrap.com/examples/dashboard/">One more nav</a>
+        <a href="https://getbootstrap.com/examples/dashboard/">Example</a>
     </li>
     <li class="item">
-        <a href="https://getbootstrap.com/examples/dashboard/">Another nav item</a>
+        <ul class="nav nav-sidebar">
+            <li class="item">
+                <a [routerLink]="['/example/grid']">Grid</a
+            ></li>
+            <li class="item">
+                <a [routerLink]="['/example/table']">Table</a>
+            </li>
+        </ul>
     </li>
 </ul>

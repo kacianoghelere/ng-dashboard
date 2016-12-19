@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
   title = 'ngDashboard!';
+  expanded: boolean = true;
+
+  toggleSidebar(event) {
+    console.log("Sidebar Toggled!", event);
+    this.expanded = event;
+  }
 }

@@ -4,6 +4,7 @@ import { MainComponent } from './main/main.component';
 import { UserComponent } from './user/user.component';
 import { GridComponent } from './example/grid/grid.component';
 import { TableComponent } from './example/table/table.component';
+import { ButtonsComponent } from './example/buttons/buttons.component';
 
 const APP_ROUTES: Routes  = [
   {
@@ -25,6 +26,10 @@ const APP_ROUTES: Routes  = [
   {
     path: 'example/table',
     component: TableComponent
+  },
+  {
+    path: 'example/buttons',
+    component: ButtonsComponent
   },
   {
     path: 'user/:id',

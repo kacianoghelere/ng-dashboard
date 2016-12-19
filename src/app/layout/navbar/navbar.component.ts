@@ -7,9 +7,9 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class NavbarComponent {
 
-  @Input('brand') brand: string = "";
-  @Input('expanded-sidebar') expanded: boolean = true;
-  @Output('toggle') toggleSidebar: EventEmitter<boolean>;
+  @Input('brand') brand:string = "";
+  @Input('expanded-sidebar') expanded:boolean = true;
+  @Output('toggle') toggleSidebar:EventEmitter<boolean>;
   sidebarIcon: string = "chevron-left";
 
   constructor() {

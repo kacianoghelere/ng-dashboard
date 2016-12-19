@@ -25,13 +25,25 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
           <a [routerLink]="['/user']">
-            <i class="glyphicon glyphicon-user"></i> Usuário
+            <glyph icon="cog"></glyph> <b>Configurações</b>
           </a>
         </li>
-        <li>
-          <a [routerLink]="['/user']">
-            <i class="glyphicon glyphicon-cog"></i> Opções
+        <li dropdown>
+          <a href id="simple-dropdown" dropdownToggle>
+            <glyph icon="list-alt"></glyph> <b>Opções</b>
           </a>
+          <ul class="dropdown-menu" dropdownMenu aria-labelledby="simple-dropdown">
+            <li>
+              <a [routerLink]="['/user']">
+                <glyph icon="user"></glyph> Usuário
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['/logout']">
+                <glyph icon="log-out"></glyph> Sair
+              </a>
+            </li>
+          </ul>
         </li>
       </ul>
     </div>

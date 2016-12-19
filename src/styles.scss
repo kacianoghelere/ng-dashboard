@@ -1,3 +1,15 @@
+$icon-font-path: '../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
+
+
+@import "assets/_variables.scss";
+@import "../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+@import "assets/_bootswatch.scss";
+@include table-row-variant('active', $table-bg-active);
+@include table-row-variant('success', transparentize($state-success-bg, 0.6));
+@include table-row-variant('info', transparentize($state-info-bg, 0.6));
+@include table-row-variant('warning', transparentize($state-warning-bg, 0.6));
+@include table-row-variant('danger', transparentize($state-danger-bg, 0.6));
+
 /* You can add global styles to this file, and also import other style files */
 /*
  * Base structure
@@ -34,12 +46,12 @@ body {
 .navbar-dashboard .navbar-header {
     float: left;
     padding: 0 15px;
-    width: 256px;
+    width: 100%;
     background-color: #444;
 }
 .navbar-dashboard .navbar-brand {
     font-size: 18px;
-} 
+}
 .navbar-dashboard .navbar-collapse {
     padding-left: 5px;
 }
@@ -67,7 +79,11 @@ body {
     vertical-align: middle;
     color: #DDD;
 }
-
+@media (min-width: 768px) {
+    .navbar-dashboard .navbar-header {
+        width: 256px;
+    }
+}
 /*
  * Sidebar
  */
@@ -75,12 +91,6 @@ body {
 /* Hide for mobile, show later */
 .sidebar {
     display: none;
-    -webkit-transition-property: width; /* Safari */
-    -webkit-transition-duration: 5s; /* Safari */
-    -webkit-transition-delay: 2s; /* Safari */
-    transition-property: width;
-    transition-duration: 5s;
-    transition-delay: 2s;
 }
 @media (min-width: 768px) {
     .sidebar {
@@ -203,6 +213,7 @@ body {
     float: left;
     position: relative;
     display: block;
+    width: 100%;
     height: 100%;
     max-height: 100%;
     overflow-y: auto;

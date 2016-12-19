@@ -18,8 +18,7 @@
       "prefix": "app",
       "mobile": false,
       "styles": [
-        "../node_modules/bootswatch/lumen/bootstrap.css",
-        "styles.css"
+        "styles.scss"
       ],
       "scripts": [
       ],
@@ -45,7 +44,7 @@
     }
   },
   "defaults": {
-    "styleExt": "css",
+    "styleExt": "scss",
     "prefixInterfaces": false,
     "inline": {
       "style": false,

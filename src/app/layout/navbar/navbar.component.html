@@ -6,7 +6,7 @@
       </a>
 
       <span class="pull-right">
-        <a class="toggle-sidebar" (click)="toggleExpand()">
+        <a class="toggle-sidebar" (click)="toggleSidebarExpand()">
           <glyph icon="menu-hamburger"></glyph>
         </a>
       </span>
@@ -23,7 +23,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
         <li>
-          <a [routerLink]="['/user']">
+          <a (click)="toggleSettingsExpand()">
             <glyph icon="cog"></glyph> <b>Configurações</b>
           </a>
         </li>
@@ -37,7 +37,7 @@
                 <glyph icon="user"></glyph> Usuário
               </a>
             </li>
-            <li>
+            <li class="active">
               <a [routerLink]="['/logout']">
                 <glyph icon="log-out"></glyph> Sair
               </a>

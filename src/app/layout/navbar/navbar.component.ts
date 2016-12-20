@@ -8,19 +8,27 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class NavbarComponent {
 
   @Input('brand') brand:string = "";
-  @Input('expanded-sidebar') expanded:boolean = true;
-  @Output('toggle') toggleSidebar:EventEmitter<boolean>;
+  @Input('expanded-sidebar') expandedSidebar:boolean = true;
+  @Input('expanded-settings') expandedSettings:boolean = false;
+  @Output('sidebarChange') toggleSidebar:EventEmitter<boolean>;
+  @Output('settingsChange') toggleSettings:EventEmitter<boolean>;
   sidebarIcon: string = "chevron-left";
 
   constructor() {
     this.toggleSidebar = new EventEmitter();
+    this.toggleSettings = new EventEmitter();
   }
 
-  toggleExpand() {
-    console.log("Toggled!", this.expanded);
-    this.expanded = !this.expanded;
-    this.sidebarIcon = this.expanded ? "chevron-left" : "chevron-right";
-    this.toggleSidebar.emit(this.expanded);
+  toggleSidebarExpand() {
+    console.log("Toggled!", this.expandedSidebar);
+    this.expandedSidebar = !this.expandedSidebar;
+    this.sidebarIcon = this.expandedSidebar ? "chevron-left" : "chevron-right";
+    this.toggleSidebar.emit(this.expandedSidebar);
+  }
+
+  toggleSettingsExpand() {
+    console.log("Toggled!", this.expandedSettings);
+    this.expandedSettings = !this.expandedSettings;
+    this.toggleSettings.emit(this.expandedSettings);
   }
 }
- 

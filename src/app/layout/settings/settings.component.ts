@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsComponent implements OnInit {
 
+  altoContraste: boolean = false;
+  inverterCores: boolean = false;
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  toggleAltoContraste() {
+    this.altoContraste = !this.altoContraste;
+  }
+
+  toggleInverterCores() {
+    this.inverterCores = !this.inverterCores;
+  }
 }

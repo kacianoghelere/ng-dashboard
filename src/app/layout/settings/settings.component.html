@@ -1,5 +1,22 @@
-<div class="settings">
-  <div class="form-group">
-    <input type="checkbox" class="form-control">
+<div class="">
+  <h1 class="header">
+    <glyph icon="cog"></glyph> Configurações
+  </h1>
+
+  <div class="list-group">
+    <a class="list-group-item" (click)="toggleAltoContraste()">
+      <glyph icon="{{ altoContraste ? 'check' : 'unchecked' }}"></glyph> Alto contraste
+    </a>
+    <a class="list-group-item" (click)="toggleInverterCores()">
+      <glyph icon="{{ inverterCores ? 'check' : 'unchecked' }}"></glyph> Inverter cores
+    </a>
+    <li class="list-group-item">
+      <div class="form-group">
+        <label for="opcao" class="control-label">Opção</label>
+        <select class="form-control input-sm" id="opcao" name="opcao">
+          <option value="">Selecione</option>
+        </select>
+      </div>
+    </li>
   </div>
 </div>

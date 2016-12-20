@@ -5,7 +5,9 @@
   <div class="row">
     <app-sidebar class="sidebar"></app-sidebar>
     <div class="main">
-      <router-outlet ></router-outlet>
+      <div [ngClass]="{'container': !expanded, 'container-fluid': expanded}">
+        <router-outlet ></router-outlet>
+      </div>
     </div>
   </div>
 </div>

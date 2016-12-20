@@ -15,6 +15,7 @@ import { ExampleModule } from './example/example.module';
 import { NavbarComponent } from './layout/navbar/navbar.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { MainContentComponent } from './layout/main-content/main-content.component';
+import { SettingsComponent } from './layout/settings/settings.component';
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import { MainContentComponent } from './layout/main-content/main-content.compone
     AppComponent,
     NavbarComponent,
     SidebarComponent,
-    MainContentComponent
+    MainContentComponent,
+    SettingsComponent
   ],
   providers: [DropdownConfig],
   bootstrap: [AppComponent]

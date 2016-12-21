@@ -1,15 +1,15 @@
-<nav class="navbar navbar-inverse inverse navbar-dashboard navbar-fixed-top">
+<nav class="navbar navbar-inverse  navbar-dashboard navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" [routerLink]="['/']">
         <b>{{brand}}</b>
       </a>
       <span class="pull-right">
-        <a class="toggle-control" (click)="toggleSidebarExpand()">
+        <a class="toggle-control" (click)="toggleSidebar()">
           <glyph icon="menu-hamburger"></glyph>
         </a>
         <a class="toggle-control visible-xs hidden-sm"
-            (click)="toggleOptionsExpand()" title="Opções">
+            (click)="toggleOptions()" title="Opções">
           <glyph icon="cog"></glyph>
         </a>
       </span>
@@ -26,7 +26,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
         <li class="active">
-          <a (click)="toggleOptionsExpand()" title="Opções">
+          <a (click)="toggleOptions()" title="Opções">
             <glyph icon="cog"></glyph> <b>Opções</b>
           </a>
         </li>

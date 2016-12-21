@@ -5,10 +5,14 @@
 
   <div class="list-group">
     <a class="list-group-item" (click)="toggleAltoContraste()">
-      <check-glyph [flag]="altoContraste"></check-glyph> Alto contraste
+      Alto contraste <check-glyph class="pull-right" [flag]="altoContraste"></check-glyph>
     </a>
     <a class="list-group-item" (click)="toggleInverterCores()">
-      <check-glyph [flag]="inverterCores"></check-glyph> Inverter cores
+      Inverter cores <check-glyph class="pull-right" [flag]="inverterCores"></check-glyph>
+    </a>
+    <a class="list-group-item" (click)="toggleMenuLateral()"
+        (sidebarChange)="toggleMenuLateral($event)">
+      Menu lateral <check-glyph class="pull-right" [flag]="menuLateral"></check-glyph>
     </a>
     <li class="list-group-item">
       <div class="form-group">

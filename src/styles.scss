@@ -302,6 +302,7 @@ html, body {
 
         .form-control-feedback {
           height: 45px;
+          line-height: 45px;
         }
       }
     }
@@ -464,7 +465,7 @@ html, body {
   max-height: 100%;
   overflow-y: auto;
   padding: 15px;
-  background-color: #F9F9F9;
+  background-color: #F1F1F1;
 }
 .layout-container .main .page-header {
   margin-top: 0;

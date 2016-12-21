@@ -19,6 +19,7 @@ import { SettingsComponent } from './layout/settings/settings.component';
 import { OptionsPanelComponent } from './layout/options-panel/options-panel.component';
 import { ProfileComponent } from './layout/profile/profile.component';
 import { MessagesComponent } from './layout/messages/messages.component';
+import { LayoutControlService } from './layout/layout-control.service';
 
 @NgModule({
   imports: [
@@ -45,7 +46,7 @@ import { MessagesComponent } from './layout/messages/messages.component';
     ProfileComponent,
     MessagesComponent
   ],
-  providers: [DropdownConfig],
+  providers: [DropdownConfig, LayoutControlService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

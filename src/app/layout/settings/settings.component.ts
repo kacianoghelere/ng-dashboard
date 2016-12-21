@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { LayoutControlService } from '../layout-control.service';
+
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
@@ -9,8 +11,13 @@ export class SettingsComponent {
 
   altoContraste: boolean = false;
   inverterCores: boolean = false;
+  menuLateral: boolean = true;
 
-  constructor() { }
+  constructor(private layoutControl: LayoutControlService) {
+    this.layoutControl.sidebarChange.subscribe((flag) => {
+      this.menuLateral = flag;
+    })
+  }
 
   toggleAltoContraste() {
     this.altoContraste = !this.altoContraste;
@@ -18,5 +25,9 @@ export class SettingsComponent {
 
   toggleInverterCores() {
     this.inverterCores = !this.inverterCores;
+  }
+
+  toggleMenuLateral() {
+    this.menuLateral = !this.menuLateral;
   }
 }

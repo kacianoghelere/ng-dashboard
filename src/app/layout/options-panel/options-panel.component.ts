@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { LayoutControlService } from '../layout-control.service';
+
 @Component({
   selector: 'app-options-panel',
   templateUrl: './options-panel.component.html',

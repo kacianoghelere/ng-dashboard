@@ -1,4 +1,6 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
+import { LayoutControlService } from '../layout-control.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,27 +10,24 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class NavbarComponent {
 
   @Input('brand') brand:string = "";
-  @Input('expanded-sidebar') expandedSidebar:boolean = true;
-  @Input('expanded-options') expandedSettings:boolean = false;
-  @Output('sidebarChange') toggleSidebar:EventEmitter<boolean>;
-  @Output('optionsChange') toggleOptions:EventEmitter<boolean>;
+  expandedSidebar:boolean = true;
+  expandedOptions:boolean = false;
   sidebarIcon: string = "chevron-left";
 
-  constructor() {
-    this.toggleSidebar = new EventEmitter();
-    this.toggleOptions = new EventEmitter();
+  constructor(private layoutControl: LayoutControlService) {
+    this.layoutControl.optionsChange.subscribe((options) => {
+      this.expandedOptions = options;
+    })
+    this.layoutControl.sidebarChange.subscribe((sidebar) => {
+      this.expandedSidebar = sidebar;
+    });
   }
 
-  toggleSidebarExpand() {
-    console.log("Toggled!", this.expandedSidebar);
-    this.expandedSidebar = !this.expandedSidebar;
-    this.sidebarIcon = this.expandedSidebar ? "chevron-left" : "chevron-right";
-    this.toggleSidebar.emit(this.expandedSidebar);
+  toggleOptions() {
+    this.layoutControl.toggleOptions();
   }
 
-  toggleOptionsExpand() {
-    console.log("Toggled!", this.expandedSettings);
-    this.expandedSettings = !this.expandedSettings;
-    this.toggleOptions.emit(this.expandedSettings);
+  toggleSidebar() {
+    this.layoutControl.toggleSidebar();
   }
 }

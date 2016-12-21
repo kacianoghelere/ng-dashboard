@@ -1,18 +1,16 @@
 
-<app-navbar [brand]="title"
-    (sidebarChange)="toggleSidebar($event)"
-    (optionsChange)="toggleOptions($event)"></app-navbar>
+<app-navbar [brand]="title"></app-navbar>
 
 <div class="container-fluid layout-container"
     [ngClass]="{'full-page': !expandedSidebar}">
   <div class="row">
-    <app-sidebar class="sidebar inverse"></app-sidebar>
+    <app-sidebar class="sidebar "></app-sidebar>
     <div class="main">
       <div [ngClass]="{'container': !expandedSidebar, 'container-fluid': expandedSidebar}">
         <router-outlet ></router-outlet>
       </div>
     </div>
-    <app-options-panel class="options-panel inverse"
+    <app-options-panel class="options-panel "
         [ngClass]="{'expanded': expandedOptions}"></app-options-panel>
   </div>
 </div>

@@ -16,6 +16,9 @@ import { NavbarComponent } from './layout/navbar/navbar.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { MainContentComponent } from './layout/main-content/main-content.component';
 import { SettingsComponent } from './layout/settings/settings.component';
+import { OptionsPanelComponent } from './layout/options-panel/options-panel.component';
+import { ProfileComponent } from './layout/profile/profile.component';
+import { MessagesComponent } from './layout/messages/messages.component';
 
 @NgModule({
   imports: [
@@ -37,7 +40,10 @@ import { SettingsComponent } from './layout/settings/settings.component';
     NavbarComponent,
     SidebarComponent,
     MainContentComponent,
-    SettingsComponent
+    SettingsComponent,
+    OptionsPanelComponent,
+    ProfileComponent,
+    MessagesComponent
   ],
   providers: [DropdownConfig],
   bootstrap: [AppComponent]

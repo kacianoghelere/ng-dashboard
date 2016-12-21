@@ -1,0 +1,43 @@
+<div>
+  <div class="options-panel-body">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs nav-justified" role="tablist">
+      <li role="presentation" [ngClass]="{active: isSelectedTab(0)}">
+        <a role="tab" data-toggle="tab" (click)="selectTab(0)">
+          <glyph icon="wrench"></glyph>
+        </a>
+      </li>
+      <li role="presentation" [ngClass]="{active: isSelectedTab(1)}">
+        <a role="tab" data-toggle="tab" (click)="selectTab(1)">
+          <glyph icon="user"></glyph>
+        </a>
+      </li>
+      <li role="presentation" [ngClass]="{active: isSelectedTab(2)}">
+        <a role="tab" data-toggle="tab" (click)="selectTab(2)">
+          <glyph icon="envelope"></glyph>
+        </a>
+      </li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane" [ngClass]="{active: isSelectedTab(0)}">
+        <app-settings></app-settings>
+      </div>
+
+      <div role="tabpanel" class="tab-pane" [ngClass]="{active: isSelectedTab(1)}">
+        <app-profile></app-profile>
+      </div>
+
+      <div role="tabpanel" class="tab-pane" [ngClass]="{active: isSelectedTab(2)}">
+        <app-messages></app-messages>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <a [routerLink]="['/']">
+      <glyph icon="off"></glyph> Sair
+    </a>
+  </div>
+</div>

@@ -9,14 +9,14 @@ export class NavbarComponent {
 
   @Input('brand') brand:string = "";
   @Input('expanded-sidebar') expandedSidebar:boolean = true;
-  @Input('expanded-settings') expandedSettings:boolean = false;
+  @Input('expanded-options') expandedSettings:boolean = false;
   @Output('sidebarChange') toggleSidebar:EventEmitter<boolean>;
-  @Output('settingsChange') toggleSettings:EventEmitter<boolean>;
+  @Output('optionsChange') toggleOptions:EventEmitter<boolean>;
   sidebarIcon: string = "chevron-left";
 
   constructor() {
     this.toggleSidebar = new EventEmitter();
-    this.toggleSettings = new EventEmitter();
+    this.toggleOptions = new EventEmitter();
   }
 
   toggleSidebarExpand() {
@@ -26,9 +26,9 @@ export class NavbarComponent {
     this.toggleSidebar.emit(this.expandedSidebar);
   }
 
-  toggleSettingsExpand() {
+  toggleOptionsExpand() {
     console.log("Toggled!", this.expandedSettings);
     this.expandedSettings = !this.expandedSettings;
-    this.toggleSettings.emit(this.expandedSettings);
+    this.toggleOptions.emit(this.expandedSettings);
   }
 }

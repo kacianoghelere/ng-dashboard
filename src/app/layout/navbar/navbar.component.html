@@ -1,13 +1,16 @@
-<nav class="navbar navbar-inverse navbar-dashboard navbar-fixed-top">
+<nav class="navbar navbar-inverse inverse navbar-dashboard navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" [routerLink]="['/']">
         <b>{{brand}}</b>
       </a>
-
       <span class="pull-right">
-        <a class="toggle-sidebar" (click)="toggleSidebarExpand()">
+        <a class="toggle-control" (click)="toggleSidebarExpand()">
           <glyph icon="menu-hamburger"></glyph>
+        </a>
+        <a class="toggle-control visible-xs hidden-sm"
+            (click)="toggleOptionsExpand()" title="Opções">
+          <glyph icon="cog"></glyph>
         </a>
       </span>
     </div>
@@ -22,27 +25,10 @@
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li>
-          <a (click)="toggleSettingsExpand()">
-            <glyph icon="cog"></glyph> <b>Configurações</b>
+        <li class="active">
+          <a (click)="toggleOptionsExpand()" title="Opções">
+            <glyph icon="cog"></glyph> <b>Opções</b>
           </a>
-        </li>
-        <li dropdown>
-          <a href id="simple-dropdown" dropdownToggle>
-            <glyph icon="list-alt"></glyph> <b>Opções</b>
-          </a>
-          <ul class="dropdown-menu" dropdownMenu aria-labelledby="simple-dropdown">
-            <li>
-              <a [routerLink]="['/user']">
-                <glyph icon="user"></glyph> Usuário
-              </a>
-            </li>
-            <li class="active">
-              <a [routerLink]="['/logout']">
-                <glyph icon="log-out"></glyph> Sair
-              </a>
-            </li>
-          </ul>
         </li>
       </ul>
     </div>

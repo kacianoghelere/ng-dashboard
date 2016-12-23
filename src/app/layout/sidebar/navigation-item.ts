@@ -7,8 +7,9 @@ export class NavigationItem {
   parent: number;
   routePath: string = "";
 
-  public constructor(id: number, description: string, favorite: boolean,
-      routePath: string, parent: number = 0) {
+  public constructor(id: number = null, description: string = "",
+      favorite: boolean = false, routePath: string = "",
+      parent: number = null) {
     this.id = id;
     this.description = description;
     this.favorite = favorite;

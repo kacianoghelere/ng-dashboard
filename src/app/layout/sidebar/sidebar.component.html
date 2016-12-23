@@ -13,89 +13,57 @@
 
 <div class="nav nav-search">
   <div class="form-group has-feedback">
-    <input type="text" name="form-control search-box" placeholder="Busca">
+    <input type="text" name="form-control search-box" placeholder="Busca"
+        [(ngModel)]="search">
     <i class="glyphicon glyphicon-search form-control-feedback"></i>
   </div>
 </div>
 
-<ul class="nav nav-sidebar">
-  <li class="item active">
-    <a [routerLink]="['/example/full-template']">
-      <glyph class="pull-right" icon="list-alt"></glyph> Template
-      <span class="sr-only">(current)</span>
-    </a>
-  </li>
-  <li class="item">
-    <a [routerLink]="['/']">
-      <glyph class="pull-right" icon="menu-right"></glyph> Example
-    </a>
-  </li>
-  <li class="item">
-    <a [routerLink]="['/']">
-      <glyph class="pull-right" icon="menu-right"></glyph> Example
-    </a>
-  </li>
-  <li class="item">
-    <a [routerLink]="['/']">
-      <glyph class="pull-right" icon="menu-right"></glyph> Example
-    </a>
-  </li>
-  <li class="item">
-    <a [routerLink]="['/']">
-      <glyph class="pull-right" icon="menu-right"></glyph> Example
-    </a>
-  </li>
-  <li class="item">
-    <a [routerLink]="['/']">
-      <glyph class="pull-right" icon="menu-right"></glyph> Example
-    </a>
-  </li>
-  <li class="item">
-    <a [routerLink]="['/']">
-      <glyph class="pull-right" icon="menu-up"></glyph> Example
-    </a>
-    <ul class="nav nav-sidebar">
-      <li class="item">
-        <a [routerLink]="['/example/grid']">Grid</a>
-      </li>
-      <li class="item">
-        <a [routerLink]="['/example/table']">Table</a>
-      </li>
-      <li class="item">
-        <a [routerLink]="['/example/buttons']">Buttons</a>
-      </li>
-    </ul>
-  </li>
-  <li class="item">
-    <a [routerLink]="['/']">
-      <glyph class="pull-right" icon="menu-up"></glyph> Example
-    </a>
-    <ul class="nav nav-sidebar">
-      <li class="item">
-        <a [routerLink]="['/example/grid']">Grid</a>
-      </li>
-      <li class="item">
-        <a [routerLink]="['/example/table']">Table</a>
-      </li>
-      <li class="item">
-        <a [routerLink]="['/example/buttons']">Buttons</a>
-      </li>
-    </ul>
-  </li>
-  <li class="item">
-    <a [routerLink]="['/']">
-      <glyph class="pull-right" icon="menu-up"></glyph> Example
-    </a>
-    <ul class="nav nav-sidebar">
-      <li class="item">
-        <a [routerLink]="['/example/grid']">Grid</a>
-      </li>
-      <li class="item">
-        <a [routerLink]="['/example/table']">Table</a>
-      </li>
-      <li class="item">
-        <a [routerLink]="['/example/buttons']">Buttons</a>
-      </li>
-    </ul>
-  </li>
-</ul>
+<div class="sidebar-tabs">
+  <ul class="nav nav-tabs nav-justified" role="tablist">
+    <li role="presentation" [ngClass]="{active: isSelectedTab(0)}">
+      <a role="tab" data-toggle="tab" (click)="selectTab(0)">
+        <glyph icon="list"></glyph> Navegação
+      </a>
+    </li>
+    <li role="presentation" [ngClass]="{active: isSelectedTab(1)}">
+      <a role="tab" data-toggle="tab" (click)="selectTab(1)">
+        <glyph icon="star"></glyph> Favoritos
+      </a>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane" [ngClass]="{active: isSelectedTab(0)}">
+      <ul class="nav nav-sidebar">
+        <li *ngFor="let item of navigation" class="item">
+          <a class="item-favorite" (click)="item.toggleFavorite()">
+            <glyph [icon]="item.favorite ? 'star' : 'star-empty'"></glyph>
+          </a>
+          <a class="item-path" [routerLink]="[item.routePath]">
+            {{ item.description }}
+            <div class="pull-right">
+              <glyph icon="menu-right"></glyph>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div role="tabpanel" class="tab-pane" [ngClass]="{active: isSelectedTab(1)}">
+      <ul class="nav nav-sidebar">
+        <li *ngFor="let item of favorites" class="item">
+          <a class="item-favorite" (click)="item.toggleFavorite()">
+            <glyph [icon]="item.favorite ? 'star' : 'star-empty'"></glyph>
+          </a>
+          <a class="item-path" [routerLink]="[item.routePath]">
+            {{ item.description }}
+            <div class="pull-right">
+              <glyph icon="menu-right"></glyph>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

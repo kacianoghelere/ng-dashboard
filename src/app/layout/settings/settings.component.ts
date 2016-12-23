@@ -10,7 +10,6 @@ import { LayoutControlService } from '../layout-control.service';
 export class SettingsComponent {
 
   altoContraste: boolean = false;
-  inverterCores: boolean = false;
   menuLateral: boolean = true;
 
   constructor(private layoutControl: LayoutControlService) {
@@ -23,11 +22,15 @@ export class SettingsComponent {
     this.altoContraste = !this.altoContraste;
   }
 
-  toggleInverterCores() {
-    this.inverterCores = !this.inverterCores;
+  get inverseColors(): boolean {
+    return this.layoutControl.inverseColors;
+  }
+
+  toggleInverseColors() {
+    this.layoutControl.toggleInverseColors();
   }
 
   toggleMenuLateral() {
-    this.menuLateral = !this.menuLateral;
+    this.layoutControl.toggleSidebar();
   }
 }

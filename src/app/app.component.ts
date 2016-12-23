@@ -20,4 +20,8 @@ export class AppComponent {
   get expandedSidebar(): boolean {
     return this.layoutControl.sidebar;
   }
+
+  get inverseColors(): boolean {
+    return this.layoutControl.inverseColors;
+  }
 }

@@ -11,10 +11,110 @@ $icon-font-path: '../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
 @include table-row-variant('danger', transparentize($state-danger-bg, 0.6));
 
 @mixin background-transition {
-  -webkit-transition: background-color 1s linear;
-  -moz-transition: background-color 1s linear;
-  -ms-transition: background-color 1s linear;
-  transition: background-color 1s linear;
+  -webkit-transition: background-color 1s, color 1s linear;
+  -moz-transition: background-color 1s, color 1s linear;
+  -ms-transition: background-color 1s, color 1s linear;
+  transition: background-color 1s, color 1s linear;
+}
+
+$shadow-base:            #696969 !default;
+$shadow-darker:          darken($shadow-base, 15%) !default;
+$shadow-dark:            darken($shadow-base, 10%) !default;
+$shadow-light:           lighten($shadow-base, 10%) !default;
+$shadow-lighter:         lighten($shadow-base, 15%) !default;
+
+@mixin shadow-base {
+  @include background-transition;
+  background-color: $shadow-base;
+  color: #E0E0E0;
+}
+@mixin shadow-darker {
+  @include background-transition;
+  background-color: $shadow-darker;
+  color: #E4E4E4;
+}
+@mixin shadow-dark {
+  @include background-transition;
+  background-color: $shadow-dark;
+  color: #E8E8E8;
+}
+@mixin shadow-light {
+  @include background-transition;
+  background-color: $shadow-light;
+  color: #EBEBEB;
+}
+@mixin shadow-lighter {
+  @include background-transition;
+  background-color: $shadow-lighter;
+  color: #EEE;
+}
+
+$bright-base:            #BFBFBF !default;
+$bright-darker:          darken($bright-base, 15%) !default;
+$bright-dark:            darken($bright-base, 10%) !default;
+$bright-light:           lighten($bright-base, 10%) !default;
+$bright-lighter:         lighten($bright-base, 15%) !default;
+
+@mixin bright-base {
+  @include background-transition;
+  background-color: $bright-base;
+  color: #333;
+}
+@mixin bright-darker {
+  @include background-transition;
+  background-color: $bright-darker;
+  color: #383838;
+}
+@mixin bright-dark {
+  @include background-transition;
+  background-color: $bright-dark;
+  color: #404040;
+}
+@mixin bright-light {
+  @include background-transition;
+  background-color: $bright-light;
+  color: #444;
+}
+@mixin bright-lighter {
+  @include background-transition;
+  background-color: $bright-lighter;
+  color: #484848;
+}
+
+.color-display {
+  padding: 10px 15px;
+}
+
+.shadow-base-bg {
+  @include shadow-base;
+}
+.shadow-darker-bg {
+  @include shadow-darker;
+}
+.shadow-dark-bg {
+  @include shadow-dark;
+}
+.shadow-light-bg {
+  @include shadow-light;
+}
+.shadow-lighter-bg {
+  @include shadow-lighter;
+}
+
+.bright-base-bg {
+  @include bright-base;
+}
+.bright-darker-bg {
+  @include bright-darker;
+}
+.bright-dark-bg {
+  @include bright-dark;
+}
+.bright-light-bg {
+  @include bright-light;
+}
+.bright-lighter-bg {
+  @include bright-lighter;
 }
 
 /* You can add global styles to this file, and also import other style files */
@@ -51,14 +151,14 @@ html, body {
 }
 
 .navbar-dashboard {
-  background-color: #444;
+  @include shadow-dark;
   font-size: 12px;
 
   .navbar-header {
+    @include shadow-darker;
     float: left;
     padding: 0 15px;
     width:  100%;
-    background-color: #333;
 
     @media (max-width: 768px) {
       margin: 0;
@@ -68,7 +168,12 @@ html, body {
     }
   }
   .navbar-brand {
+    color: #DDD;
     font-size: 18px;
+
+    &:hover {
+      color: #CCC;
+    }
   }
   .navbar-collapse {
     padding-left: 5px;
@@ -76,11 +181,6 @@ html, body {
   .container-fluid {
     padding-left: 0;
     padding-right: 0;
-  }
-  .form-control {
-    border: none;
-    background-color: #555;
-    color: #DDD;
   }
   .navbar-right {
     margin-right: 0;
@@ -96,24 +196,17 @@ html, body {
     vertical-align: middle;
     color: #DDD;
   }
-  .navbar-nav > li > a {
-    &:hover, &:focus {
-      color: #BBB;
-      background-color: transparent;
-    }
-  }
+
   .navbar-nav > li.active > a {
-    background-color: #3A3A3A;
-    color: #DDD;
+    @include shadow-darker;
 
     &:hover, &:focus {
-        background-color: #353535;
-        color: #CCC;
+      @include shadow-base;
     }
   }
   .nav-breadcrumb {
+    @include shadow-dark;
     height: 50px;
-    background-color: #444;
 
     .breadcrumb {
       border-color: transparent;
@@ -129,7 +222,7 @@ html, body {
 
       a {
         font-weight: bold;
-        color: #AAA;
+        color: #BBB;
 
         &:hover {
           color: #CCC;
@@ -150,17 +243,14 @@ html, body {
     }
   }
   &.inverse {
-    background-color: #CCC;
+    @include bright-light;
+    box-shadow: 0px 3px 5px 0 rgba(0,0,0,.2);
 
     .navbar-brand {
       color: #777;
     }
     .navbar-header {
-      background-color: #BBB;
-    }
-    .form-control {
-      background-color: #AAA;
-      color: #222;
+      @include bright-lighter;
     }
     .toggle-control {
       color: #222;
@@ -169,12 +259,10 @@ html, body {
       color: #666;
     }
     .navbar-nav > li.active > a {
-      background-color: #AAA;
-      color: #444;
+      @include bright-lighter;
 
       &:hover, &:focus {
-          background-color: #A0A0A0;
-          color: #333;
+        @include bright-base;
       }
     }
     .navbar-nav > li > a:hover,
@@ -182,7 +270,7 @@ html, body {
       color: #444;
     }
     .nav-breadcrumb {
-      background-color: #CCC;
+      @include bright-light;
 
       .breadcrumb {
         a {
@@ -203,14 +291,13 @@ html, body {
 .layout-container {
   /* Hide for mobile, show later */
   .sidebar {
+    @include shadow-dark;
     float: left;
     position: relative;
     display: block;
     -webkit-transition: width 0.4s; /* Safari */
     transition: width 0.4s;
     z-index: 1;
-    background-color: #444;
-    color: #BBB;
     max-height: 100%;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
 
@@ -227,21 +314,23 @@ html, body {
       z-index: 3;
       position: fixed;
       height: auto;
+      width: 100%;
+      -webkit-transition: height 0.3s; /* Safari */
+      transition: height 0.3s;
     }
 
     /* sidebar user info */
     .nav-user {
+      @include shadow-dark;
       float: left;
       width: 100%;
       height: 90px;
       max-height: 90px;
       padding: 10px;
-      background-color: rgba(85,85,85,.7);
       /*box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,0.3)  ;*/
       border-bottom: 1px solid #666;
       text-align: center;
       display: table;
-      color: #EEE;
 
       .user-img {
         display: table-cell;
@@ -273,13 +362,13 @@ html, body {
 
     /* sidebar search */
     .nav-search {
+      @include shadow-dark;
       float: left;
       width: 100%;
       height: 45px;
       max-height: 45px;
       margin: 0;
       padding: 0px;
-      background-color: rgba(80,80,80,.7);
       /*box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,0.3)  ;*/
       border-bottom: 1px solid #666;
       text-align: center;
@@ -290,13 +379,12 @@ html, body {
         margin-bottom: 0;
 
         input {
+          @include shadow-darker;
           display: block;
           width: 100%;
           height: 35px;
           padding: 5px 10px;
           border: none;
-          background-color: #444;
-          color: #AAA;
           border-radius: 4px;
         }
 
@@ -307,12 +395,35 @@ html, body {
       }
     }
 
+    .sidebar-tabs {
+      float: left;
+      width: 100%;
+      height: calc(100% - 136px);
+
+      .nav-tabs {
+        height: 38px;
+      }
+
+      .tab-content {
+        float: left;
+        width: 100%;
+        max-height: calc(100% - 38px);
+        overflow-y: auto;
+
+        .tab-pane {
+          float: left;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+
     /* Sidebar navigation */
     .nav-sidebar {
+      @include shadow-dark;
       float: left;
       width: 100%;
       height: 100%;
-      background-color: #888;
       /*box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,0.3);*/
 
       & > li.item {
@@ -322,35 +433,50 @@ html, body {
         color: #AAA;
         font-weight: bold;
         border-radius: 0px;
+        border-bottom: 1px solid #555;
 
-        & > a {
-          padding-right: 10px;
-          padding-left: 10px;
+        > a {
+          @include shadow-dark;
+          border: none;
+          display: inline-block;
+
+          &.item-favorite {
+            @include shadow-base;
+            float: left;
+            width: 12%;
+
+            &:hover {
+              background-color: transparent;
+            }
+          }
+          &.item-path {
+            float: left;
+            width: 88%;
+          }
+        }
+        a {
+          padding: 5px 10px;
           color: #ddd;
-          border-bottom: 1px solid #666;
 
           &:hover,
           &:focus {
+            @include shadow-base;
             color: orange;
-            background-color: transparent;
             text-shadow: 1px 1px 1px rgba(0, 0, 0, .2)
           }
         }
         &.active {
-          & > a {
-            color: #ddd;
-            background-color: #777;
+          a {
+            @include shadow-light;
           }
-          & > a:hover,
-          & > a:focus {
-            color: orange;
-            background-color: #777;
+          a:hover,
+          a:focus {
+            @include shadow-lighter;
           }
         }
 
         .nav-sidebar {
-          background-color: #626262;
-          background-color: rgba(90,90,90,.7);
+          @include shadow-lighter;
         }
       }
     }
@@ -363,25 +489,22 @@ html, body {
 
     /* Inverse sidebar colors */
     &.inverse {
-      background-color: #444;
-      color: #BBB;
+      @include bright-lighter;
 
       /* sidebar user info */
       .nav-user {
-        background-color: rgba(170,170,170,.7);
-        border-bottom: 1px solid #999;
-        color: #EEE;
+        @include bright-light;
+        border-bottom: 1px solid $bright-base;
       }
 
       /* sidebar search */
       .nav-search {
-        background-color: rgba(170,170,170,.7);
-        border-bottom: 1px solid #999;
+        @include bright-light;
+        border-bottom: 1px solid $bright-base;
 
         > .form-group {
           input {
-            background-color: #BBB;
-            color: #444;
+            @include bright-base;
           }
           .form-control-feedback {
             color: #444;
@@ -391,39 +514,45 @@ html, body {
 
       /* Sidebar navigation */
       .nav-sidebar {
-        background-color: #AAA;
+        @include bright-base;
 
         & > li.item {
           color: #555;
+          border-bottom: 1px solid #CCC;
 
-          & > a {
-            color: #555;
-            border-bottom: 1px solid #999;
+          > a {
+            &.item-favorite {
+              @include bright-base;
+
+              &:hover {
+                @include bright-dark;
+              }
+            }
+          }
+          a {
+            @include bright-light;
 
             &:hover,
             &:focus {
-              color: #444;
               background-color: transparent;
             }
           }
           &.active {
-            & > a {
-              color: #555;
-              background-color: #BBB;
+            a {
+              @include bright-base;
 
               > .glyphicon {
                 color: #333;
               }
             }
-            & > a:hover,
-            & > a:focus {
-              color: #444;
-              background-color: #888;
+            a:hover,
+            a:focus {
+              @include bright-light;
             }
           }
 
           .nav-sidebar {
-            background-color: #9D9D9D;
+            @include bright-lighter;
           }
         }
       }
@@ -432,6 +561,11 @@ html, body {
 
   &.full-page .sidebar {
     width: 0;
+
+    @media (max-width: 768px) {
+      height: 0;
+      width: 100%;
+    }
 
     > .nav-user {
       display: none;
@@ -443,6 +577,13 @@ html, body {
 
     > .nav-sidebar {
       display: none;
+    }
+  }
+
+  .tab-content, .tab-pane,  .tab-pane > .nav.nav-sidebar  {
+    @media (max-width: 768px) {
+      float: left;
+      width: 100%;
     }
   }
 }
@@ -517,14 +658,85 @@ html, body {
   margin: 0;
   padding: 0;
 }
+
+.layout-container {
+  .options-panel, .sidebar {
+    .nav-justified {
+      > li {
+        @media (max-width: 768px) {
+          display: table-cell;
+          width: 1%;
+        }
+      }
+    }
+    .nav-tabs, .nav-justified {
+      @include shadow-dark;
+      float: left;
+
+      > li {
+        margin: 0;
+        border-radius: 0;
+
+        > a {
+          @include shadow-light;
+          margin: 0;
+          border-radius: 0;
+          padding: 10px 15px;
+          border: none;
+
+          &:hover {
+            @include shadow-base;
+            padding: 10px 15px;
+            border: none;
+          }
+        }
+        &.active > a {
+          @include shadow-dark;
+          padding: 10px 15px;
+          border: none;
+          color: orange;
+
+          &:hover, &:focus {
+            @include shadow-base;
+            padding: 10px 15px;
+            border: none;
+          }
+        }
+      }
+    }
+    &.inverse {
+      .nav-tabs, .nav-justified {
+        @include bright-lighter;
+
+        > li {
+          > a {
+            @include bright-base;
+
+            &:hover, &:focus {
+              @include bright-light;
+            }
+          }
+          &.active > a {
+            @include bright-lighter;
+
+            &:hover {
+              @include bright-light;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 .layout-container {
   .options-panel {
+    @include shadow-dark;
     position: fixed;
     width: 0;
     right: 0;
     height: 100%;
     z-index: 100;
-    background-color: #555;
     border-left: 2px solid #333;
     -webkit-transition: width 0.4s; /* Safari */
     transition: width 0.4s;
@@ -581,88 +793,40 @@ html, body {
     }
 
     .list-group {
+      @include shadow-base;
       float: left;
       width: 100%;
-      background-color: #454545;
       border: none;
       border-radius: 0;
       margin: 0;
 
       .list-group-item {
+        @include shadow-base;
         float: left;
         width: 100%;
-        background-color: #444;
-        color: #CCC;
         border: none;
         border-radius: 0;
         border-bottom: 1px solid #666;
         margin-bottom: 1px;
 
         .form-control {
+          @include shadow-dark;
           border: none;
-          background-color: #666;
-          color: #DDD;
-        }
-      }
-    }
-
-    .nav-tabs, .nav-justified {
-      background-color: #3F3F3F;
-
-      > li {
-        margin: 0;
-        border-radius: 0;
-
-        > a {
-          margin: 0;
-          background-color: #3F3F3F;
-          color: #fff;
-          border-radius: 0;
-          border-width: 0 0 3px 0;
-          border-style: solid;
-          border-color: #333;
-          padding: 10px 15px;
-
-          &:hover {
-            background-color: #222;
-            border-width: 0 0 3px 0;
-            border-style: solid;
-            border-color: #666;
-            padding: 10px 15px;
-          }
-        }
-        &.active > a {
-          color: #fff;
-          background-color: #555;
-          border-width: 0 0 3px 0;
-          border-style: solid;
-          border-color: #555;
-          padding: 10px 15px;
-
-          &:hover, &:focus {
-            color: #fff;
-            background-color: #666;
-            border-width: 0 0 3px 0;
-            border-style: solid;
-            border-color: #555;
-            padding: 10px 15px;
-          }
         }
       }
     }
 
     .profile {
+      @include shadow-dark;
       float: left;
       width: 100%;
       height: 90px;
       max-height: 90px;
       padding: 10px;
-      background-color: #888;
       /*box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,0.3)  ;*/
       border-bottom: 1px solid #666;
       text-align: center;
       display: table;
-      color: #EEE;
 
       .user-img {
         display: table-cell;
@@ -692,16 +856,8 @@ html, body {
       }
     }
 
-    .nav-justified {
-      > li {
-        @media (max-width: 768px) {
-          display: table-cell;
-          width: 1%;
-        }
-      }
-    }
     &.inverse {
-      background-color: #AAA;
+      @include bright-light;
       border-left: 2px solid #CCC;
 
       .header {
@@ -716,45 +872,18 @@ html, body {
           color: #666;
         }
       }
+      .profile {
+        @include bright-base;
+      }
       .list-group {
-        background-color: #BABABA;
+        @include bright-base;
 
         .list-group-item {
-          background-color: #BBB;
-          color: #333;
+          @include bright-base;
           border-bottom: 1px solid #999;
 
           .form-control {
-            background-color: #999;
-            color: #333;
-          }
-        }
-      }
-
-      .nav-tabs, .nav-justified {
-        background-color: #C0C0C0;
-
-        > li {
-          > a {
-            background-color: #C0C0C0;
-            color: #444;
-            border-color: #CCC;
-
-            &:hover {
-              background-color: #DDD;
-              border-color: #666;
-            }
-          }
-          &.active > a {
-            color: #333;
-            background-color: #AAA;
-            border-color: #555;
-
-            &:hover, &:focus {
-              color: #333;
-              background-color: #999;
-              border-color: #AAA;
-            }
+            @include bright-light;
           }
         }
       }

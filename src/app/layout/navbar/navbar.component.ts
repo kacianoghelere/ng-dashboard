@@ -10,18 +10,9 @@ import { LayoutControlService } from '../layout-control.service';
 export class NavbarComponent {
 
   @Input('brand') brand:string = "";
-  expandedSidebar:boolean = true;
-  expandedOptions:boolean = false;
   sidebarIcon: string = "chevron-left";
 
-  constructor(private layoutControl: LayoutControlService) {
-    this.layoutControl.optionsChange.subscribe((options) => {
-      this.expandedOptions = options;
-    })
-    this.layoutControl.sidebarChange.subscribe((sidebar) => {
-      this.expandedSidebar = sidebar;
-    });
-  }
+  constructor(private layoutControl: LayoutControlService) {  }
 
   toggleOptions() {
     this.layoutControl.toggleOptions();
@@ -29,5 +20,9 @@ export class NavbarComponent {
 
   toggleSidebar() {
     this.layoutControl.toggleSidebar();
+  }
+
+  get inverseColors(): boolean {
+    return this.layoutControl.inverseColors;
   }
 }

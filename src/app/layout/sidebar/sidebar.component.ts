@@ -19,13 +19,14 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._navItems.push(new NavigationItem(11, `Grid`, true, "example/grid"));
-    this._navItems.push(new NavigationItem(12, `Buttons`, true, "example/buttons"));
-    this._navItems.push(new NavigationItem(13, `Tables`, true, "example/table"));
-    this._navItems.push(new NavigationItem(14, `Color Scheme`, true, "example/color-scheme"));
-    for (let i = 1; i <= 20; i++) {
-      this._navItems.push(new NavigationItem(i, `Teste ${i}`, (i > 8), "example/full-template"));
+    this._navItems.push(new NavigationItem(11, `Grid`, true, "example/grid", 1));
+    this._navItems.push(new NavigationItem(12, `Buttons`, true, "example/buttons", 1));
+    this._navItems.push(new NavigationItem(13, `Tables`, true, "example/table", 1));
+    this._navItems.push(new NavigationItem(14, `Color Scheme`, true, "example/color-scheme", 1));
+    for (let i = 1; i <= 10; i++) {
+      this._navItems.push(new NavigationItem(i, `Teste ${i}`, (i > 8), "example/full-template", 0));
     }
+    // console.log(this.tree(this._navItems));
   }
 
   selectTab(index) {
@@ -50,5 +51,20 @@ export class SidebarComponent implements OnInit {
 
   public get favorites(): NavigationItem[] {
     return this.navigation.filter((item) => { return item.favorite; });
+  }
+
+  tree(items: NavigationItem[]): NavigationItem {
+    let idToNodeMap = {}, root = null, parentNode;
+    for (let i = 0; i < items.length; i++) {
+      let datum = items[i];
+      idToNodeMap[datum.id] = datum;
+
+      if (typeof datum.parent === "undefined") {
+        root = datum;
+      } else {
+        idToNodeMap[datum.parent].children.push(datum);
+      }
+    }
+    return root;
   }
 }

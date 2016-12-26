@@ -36,11 +36,11 @@
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane" [ngClass]="{active: isSelectedTab(0)}">
       <ul class="nav nav-sidebar">
-        <li *ngFor="let item of navigation" class="item">
+        <li *ngFor="let item of navigation" class="item" routerLinkActive="active">
           <a class="item-favorite" (click)="item.toggleFavorite()">
             <glyph [icon]="item.favorite ? 'star' : 'star-empty'"></glyph>
           </a>
-          <a class="item-path" [routerLink]="[item.routePath]">
+          <a class="item-path" [routerLink]="item.routePath">
             {{ item.description }}
             <div class="pull-right">
               <glyph icon="menu-right"></glyph>

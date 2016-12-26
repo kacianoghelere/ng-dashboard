@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { UtilModule } from './util/util.module';
 import { MainModule } from './main/main.module';
 import { UserModule } from './user/user.module';
+import { Bs3Module } from './bs3-components/bs3.module';
 import { ExampleModule } from './example/example.module';
 import { NavbarComponent } from './layout/navbar/navbar.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
@@ -32,6 +33,7 @@ import { LayoutControlService } from './layout/layout-control.service';
     routing,
     ReactiveFormsModule,
     UtilModule,
+    Bs3Module,
     UserModule,
     MainModule,
     ExampleModule

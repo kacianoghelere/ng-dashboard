@@ -4,5 +4,6 @@
 [class^="col-"].slim-grid .wrapped {
     padding: 5px 7px;
     background-color: #DDD;
+    border-radius: 4px;
     border: 1px solid #CCC;
 }

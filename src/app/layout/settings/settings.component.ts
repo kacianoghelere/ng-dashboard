@@ -1,19 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs/Rx';
 
 import { LayoutControlService } from '../layout-control.service';
+
 
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss']
 })
-export class SettingsComponent {
+export class SettingsComponent implements OnDestroy {
 
+  subscription: Subscription;
   altoContraste: boolean = false;
   menuLateral: boolean = true;
 
   constructor(private layoutControl: LayoutControlService) {
-    this.layoutControl.sidebarChange.subscribe((flag) => {
+
+    this.subscription = this.layoutControl.sidebarChange.subscribe((flag) => {
       this.menuLateral = flag;
     })
   }
@@ -32,5 +36,9 @@ export class SettingsComponent {
 
   toggleMenuLateral() {
     this.layoutControl.toggleSidebar();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

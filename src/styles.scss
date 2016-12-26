@@ -11,10 +11,11 @@ $icon-font-path: '../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
 @include table-row-variant('danger', transparentize($state-danger-bg, 0.6));
 
 @mixin background-transition {
-  -webkit-transition: background-color 1s, color 1s linear;
-  -moz-transition: background-color 1s, color 1s linear;
-  -ms-transition: background-color 1s, color 1s linear;
-  transition: background-color 1s, color 1s linear;
+  $transition-properties: background-color 0.5s, color 0.5s linear;
+  -webkit-transition: $transition-properties;
+  -moz-transition: $transition-properties;
+  -ms-transition: $transition-properties;
+  transition: $transition-properties;
 }
 
 $shadow-base:            #696969 !default;
@@ -24,27 +25,22 @@ $shadow-light:           lighten($shadow-base, 10%) !default;
 $shadow-lighter:         lighten($shadow-base, 15%) !default;
 
 @mixin shadow-base {
-  @include background-transition;
   background-color: $shadow-base;
   color: #E0E0E0;
 }
 @mixin shadow-darker {
-  @include background-transition;
   background-color: $shadow-darker;
   color: #E4E4E4;
 }
 @mixin shadow-dark {
-  @include background-transition;
   background-color: $shadow-dark;
   color: #E8E8E8;
 }
 @mixin shadow-light {
-  @include background-transition;
   background-color: $shadow-light;
   color: #EBEBEB;
 }
 @mixin shadow-lighter {
-  @include background-transition;
   background-color: $shadow-lighter;
   color: #EEE;
 }
@@ -56,27 +52,22 @@ $bright-light:           lighten($bright-base, 10%) !default;
 $bright-lighter:         lighten($bright-base, 15%) !default;
 
 @mixin bright-base {
-  @include background-transition;
   background-color: $bright-base;
   color: #333;
 }
 @mixin bright-darker {
-  @include background-transition;
   background-color: $bright-darker;
   color: #383838;
 }
 @mixin bright-dark {
-  @include background-transition;
   background-color: $bright-dark;
   color: #404040;
 }
 @mixin bright-light {
-  @include background-transition;
   background-color: $bright-light;
   color: #444;
 }
 @mixin bright-lighter {
-  @include background-transition;
   background-color: $bright-lighter;
   color: #484848;
 }
@@ -443,7 +434,7 @@ html, body {
           &.item-favorite {
             @include shadow-base;
             float: left;
-            width: 12%;
+            width: 30px;
 
             &:hover {
               background-color: transparent;
@@ -451,7 +442,7 @@ html, body {
           }
           &.item-path {
             float: left;
-            width: 88%;
+            width: calc(100% - 30px);
           }
         }
         a {

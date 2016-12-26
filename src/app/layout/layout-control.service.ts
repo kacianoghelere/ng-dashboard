@@ -3,8 +3,8 @@ import { Injectable, Output, EventEmitter } from '@angular/core';
 @Injectable()
 export class LayoutControlService {
 
-  private _options:boolean = true;
-  private _inverseColors:boolean = false;
+  private _options:boolean = false;
+  private _inverseColors:boolean = true;
   private _sidebar:boolean = true;
   @Output('inverseColorsChange') inverseColorsChange: EventEmitter<boolean>;
   @Output('optionsChange') optionsChange: EventEmitter<boolean>;

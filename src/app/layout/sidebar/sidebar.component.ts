@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { NavigationItem } from './navigation-item';
+import { NavigationNode } from './navigation-node';
+import { NavigationService } from '../navigation.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,71 +10,65 @@ import { NavigationItem } from './navigation-item';
 })
 export class SidebarComponent implements OnInit {
 
-  selected: number;
+  items: NavigationNode[] = [];
+  favoritos: NavigationNode[] = [];
+  selected: number = 0;
   search: string = "";
-  private _navItems: NavigationItem[];
 
-  constructor() {
-    this.selected = 0;
-    this._navItems = [];
-  }
+  constructor(private navigationService: NavigationService) { }
 
   ngOnInit() {
-    this._navItems.push(new NavigationItem(0, "", true, ""));
-    for (let i = 1; i < 10; i++) {
-      this._navItems.push(new NavigationItem(i, `Teste ${i}`, (i > 8), "example/full-template", 15));
-    }
-    this._navItems.push(new NavigationItem(11, `Grid`, true, "example/grid", 0));
-    this._navItems.push(new NavigationItem(12, `Buttons`, true, "example/buttons", 0));
-    this._navItems.push(new NavigationItem(13, `Tables`, true, "example/table", 0));
-    this._navItems.push(new NavigationItem(14, `Color Scheme`, true, "example/color-scheme", 0));
-    this._navItems.push(new NavigationItem(15, `Sub-menu`, true, "", 0));
-    console.log(this.tree(this._navItems));
+    this.items = this.navigationService.items;
   }
 
-  selectTab(index) {
-    this.selected = index;
+  copy(items): NavigationNode[] {
+    return <NavigationNode[]> JSON.parse(JSON.stringify(items));
+  }
+
+  get favorites(): NavigationNode[] {
+    let favorites: any[] = [];
+    let items = this.copy(this.navigation);
+    for (let i = 0; i < items.length; i++) {
+      let item = items[i];
+      if (item.favorite || item.routePath === "") {
+        favorites.push(item);
+      }
+    }
+    return favorites;
+  }
+
+  get navigation(): any[] {
+    return this.items.filter((item) => {
+      let _description = item.description.toLowerCase();
+      let _search = this.search.toLowerCase().trim();
+      return _search === "" || _description.includes(_search);
+    });
   }
 
   isSelectedTab(index) {
     return this.selected === index;
   }
 
-  random(min: number, max: number) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+  selectTab(index) {
+    this.selected = index;
   }
 
-  toggleFavorite(item: NavigationItem) {
-    item.toggleFavorite();
+  favoritesTree(): NavigationNode[] {
+    let favorites = this.favorites;
+    // console.log("Favorites =>", favorites.length);
+    // console.log(favorites);
+    return this.tree(favorites);
   }
 
-  tree(items: NavigationItem[]): NavigationItem {
-    let idToNodeMap = {}, root = null, parentNode;
-    items.sort((a: NavigationItem, b: NavigationItem) => {
-      return a.parent - b.parent;
-    });
-    items.forEach((datum: NavigationItem) => {
-      idToNodeMap[datum.id] = datum;
-
-      if (typeof datum.parent === "undefined" || datum.parent === null) {
-        root = datum;
-      } else {
-        idToNodeMap[datum.parent] = idToNodeMap[datum.parent] || new NavigationItem();
-        idToNodeMap[datum.parent].children.push(datum);
-      }
-    });
-    return root;
+  navigationTree(): NavigationNode[] {
+    let navigation = this.navigation;
+    // console.log("Navigation =>", navigation.length);
+    // console.log(navigation);
+    return this.tree(navigation);
   }
 
-  get favorites(): NavigationItem[] {
-    return this.navigation.filter((item) => { return item.favorite; });
-  }
-
-  get navigation(): NavigationItem[] {
-    return this._navItems.filter((item) => {
-      let _description = item.description.toLowerCase();
-      let _search = this.search.toLowerCase().trim();
-      return _search === "" || _description.includes(_search);
-    });
+  tree(items: NavigationNode[]): NavigationNode[] {
+    let root = this.navigationService.buildTree(items);
+    return root ? root.children : [];
   }
 }

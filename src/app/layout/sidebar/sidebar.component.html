@@ -14,7 +14,7 @@
 <div class="nav nav-search">
   <div class="form-group has-feedback">
     <input type="text" name="form-control search-box" placeholder="Busca"
-        [(ngModel)]="search">
+        [(ngModel)]="search" (keyup)="0">
     <i class="glyphicon glyphicon-search form-control-feedback"></i>
   </div>
 </div>
@@ -34,36 +34,14 @@
   </ul>
 
   <div class="tab-content">
-    <div role="tabpanel" class="tab-pane" [ngClass]="{active: isSelectedTab(0)}">
-      <ul class="nav nav-sidebar">
-        <li *ngFor="let item of navigation" class="item" routerLinkActive="active">
-          <a class="item-favorite" (click)="item.toggleFavorite()">
-            <glyph [icon]="item.favorite ? 'star' : 'star-empty'"></glyph>
-          </a>
-          <a class="item-path" [routerLink]="item.routePath">
-            {{ item.description }}
-            <div class="pull-right">
-              <glyph icon="menu-right"></glyph>
-            </div>
-          </a>
-        </li>
-      </ul>
+    <div class="tab-pane" role="tabpanel" [ngClass]="{active: isSelectedTab(0)}">
+      <label class="label label-danger" for="">navigation</label>
+      <navigation class="navigation" [items]="navigationTree()"></navigation>
     </div>
 
-    <div role="tabpanel" class="tab-pane" [ngClass]="{active: isSelectedTab(1)}">
-      <ul class="nav nav-sidebar">
-        <li *ngFor="let item of favorites" class="item">
-          <a class="item-favorite" (click)="item.toggleFavorite()">
-            <glyph [icon]="item.favorite ? 'star' : 'star-empty'"></glyph>
-          </a>
-          <a class="item-path" [routerLink]="[item.routePath]">
-            {{ item.description }}
-            <div class="pull-right">
-              <glyph icon="menu-right"></glyph>
-            </div>
-          </a>
-        </li>
-      </ul>
+    <div class="tab-pane" role="tabpanel" [ngClass]="{active: isSelectedTab(1)}">
+      <label class="label label-danger" for="">favorites</label>
+      <navigation class="favorites" [items]="favoritesTree()"></navigation>
     </div>
   </div>
 </div>

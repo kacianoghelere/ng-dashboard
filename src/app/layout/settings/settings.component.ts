@@ -16,7 +16,6 @@ export class SettingsComponent implements OnDestroy {
   menuLateral: boolean = true;
 
   constructor(private layoutControl: LayoutControlService) {
-
     this.subscription = this.layoutControl.sidebarChange.subscribe((flag) => {
       this.menuLateral = flag;
     })

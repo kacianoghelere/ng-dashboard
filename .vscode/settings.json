@@ -1,0 +1,15 @@
+{
+    "workbench.sideBar.location": "left",
+    "workbench.statusBar.visible": true,
+    "editor.fontSize": 9,
+    "editor.fontFamily": "'Droid Sans Mono', 'DejaVu Sans Mono'",
+    "editor.renderIndentGuides": true,
+    "editor.rulers": [
+        80
+    ],
+    "window.zoomLevel": 0,
+    "vsicons.dontShowNewVersionMessage": true,
+    "terminal.integrated.fontSize": 10,
+    "workbench.activityBar.visible": false,
+    "typescript.tsdk": "./node_modules/typescript/lib"
+}

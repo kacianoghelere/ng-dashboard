@@ -1,7 +1,8 @@
-export class NavigationItem {
+export class NavigationNode {
 
-  children: NavigationItem[] = [];
+  children: NavigationNode[] = [];
   description: string = "";
+  expanded: boolean = false;
   favorite: boolean = false;
   id: number;
   parent: number;
@@ -15,9 +16,5 @@ export class NavigationItem {
     this.favorite = favorite;
     this.routePath = routePath;
     this.parent = parent;
-  }
-
-  toggleFavorite() {
-    this.favorite = !this.favorite;
   }
 }

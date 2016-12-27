@@ -1,3 +1,4 @@
+
 import { Injectable, Output, EventEmitter } from '@angular/core';
 
 @Injectable()
@@ -11,9 +12,9 @@ export class LayoutControlService {
   @Output('sidebarChange') sidebarChange: EventEmitter<boolean>;
 
   constructor() {
-    this.inverseColorsChange = new EventEmitter();
-    this.optionsChange = new EventEmitter();
-    this.sidebarChange = new EventEmitter();
+    this.inverseColorsChange = new EventEmitter<boolean>();
+    this.optionsChange = new EventEmitter<boolean>();
+    this.sidebarChange = new EventEmitter<boolean>();
   }
 
   public get inverseColors(): boolean {

@@ -410,6 +410,11 @@ html, body {
     }
 
     /* Sidebar navigation */
+    .favorites .nav-sidebar {
+      li > a {
+        @include shadow-dark;
+      }
+    }
     .nav-sidebar {
       @include shadow-dark;
       float: left;
@@ -417,7 +422,7 @@ html, body {
       height: 100%;
       /*box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,0.3);*/
 
-      & > li.item {
+      li {
         float: left;
         width: 100%;
         padding: 0;
@@ -440,9 +445,16 @@ html, body {
               background-color: transparent;
             }
           }
+
           &.item-path {
             float: left;
             width: calc(100% - 30px);
+          }
+
+          &.item-description {
+            float: left;
+            width: 100%;
+            background: linear-gradient(#DDD, #D9D9D9);
           }
         }
         a {
@@ -459,10 +471,15 @@ html, body {
         &.active {
           a {
             @include shadow-light;
+            color: orange;
           }
-          a:hover,
-          a:focus {
+          a:hover {
             @include shadow-lighter;
+            color: orange;
+          }
+          a:focus {
+            @include shadow-base;
+            color: orange;
           }
         }
 
@@ -470,13 +487,15 @@ html, body {
           @include shadow-lighter;
         }
       }
+
+      > .nav-sidebar {
+        height: calc(100% - 136px);
+        max-height: calc(100% - 136px);
+        overflow-y: auto;
+      }
     }
 
-    & > .nav-sidebar {
-      height: calc(100% - 136px);
-      max-height: calc(100% - 136px);
-      overflow-y: auto;
-    }
+
 
     /* Inverse sidebar colors */
     &.inverse {
@@ -507,7 +526,7 @@ html, body {
       .nav-sidebar {
         @include bright-base;
 
-        & > li.item {
+        li {
           color: #555;
           border-bottom: 1px solid #CCC;
 
@@ -530,15 +549,22 @@ html, body {
           }
           &.active {
             a {
-              @include bright-base;
+              @include bright-light;
 
-              > .glyphicon {
+              &.item-favorite {
+                @include bright-base;
                 color: #333;
+
+                &:hover {
+                  @include bright-dark;
+                }
               }
             }
-            a:hover,
+            a:hover {
+              @include bright-lighter;
+            }
             a:focus {
-              @include bright-light;
+              @include bright-base;
             }
           }
 

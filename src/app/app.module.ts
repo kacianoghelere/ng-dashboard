@@ -6,7 +6,7 @@ import { HttpModule } from '@angular/http';
 
 import { DropdownModule, DropdownConfig } from 'ng2-bootstrap';
 
-import { routing } from './app.routing';
+import { AppRoutingModule } from './app.routing.module';
 import { AppComponent } from './app.component';
 import { UtilModule } from './util/util.module';
 import { MainModule } from './main/main.module';
@@ -21,6 +21,8 @@ import { OptionsPanelComponent } from './layout/options-panel/options-panel.comp
 import { ProfileComponent } from './layout/profile/profile.component';
 import { MessagesComponent } from './layout/messages/messages.component';
 import { LayoutControlService } from './layout/layout-control.service';
+import { NavigationService } from './layout/navigation.service';
+import { NavigationComponent } from './layout/sidebar/navigation/navigation.component';
 
 @NgModule({
   imports: [
@@ -30,7 +32,7 @@ import { LayoutControlService } from './layout/layout-control.service';
     RouterModule,
     FormsModule,
     DropdownModule,
-    routing,
+    AppRoutingModule,
     ReactiveFormsModule,
     UtilModule,
     Bs3Module,
@@ -46,9 +48,10 @@ import { LayoutControlService } from './layout/layout-control.service';
     SettingsComponent,
     OptionsPanelComponent,
     ProfileComponent,
-    MessagesComponent
+    MessagesComponent,
+    NavigationComponent
   ],
-  providers: [DropdownConfig, LayoutControlService],
+  providers: [DropdownConfig, LayoutControlService, NavigationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

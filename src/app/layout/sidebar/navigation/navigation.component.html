@@ -1,0 +1,23 @@
+<ul class="nav nav-sidebar">
+  <li *ngFor="let item of items; let i = index"
+      [ngClass]="{item: !isMenu(i), menu: isMenu(i)}"
+      routerLinkActive="active">
+    <a *ngIf="!isMenu(i)" class="item-favorite"
+        (click)="toggleFavorite(i)">
+      <glyph [icon]="item.favorite ? 'star' : 'star-empty'"></glyph>
+    </a>
+    <a *ngIf="!isMenu(i)" class="item-path" [routerLink]="item.routePath">
+      {{ item.description }}
+    </a>
+    <a *ngIf="isMenu(i)" class="item-description"
+        (click)="toggleExpanded(i)">
+      {{ item.description }}
+      <div *ngIf="isMenu(i)" class="pull-right">
+        <glyph [icon]="item.expanded ? 'menu-up' : 'menu-right'"></glyph>
+      </div>
+    </a>
+
+    <navigation *ngIf="isMenu(i)" [hidden]="!item.expanded"
+        [items]="item.children"></navigation>
+  </li>
+</ul>

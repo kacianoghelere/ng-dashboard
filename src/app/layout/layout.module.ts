@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { HttpModule } from '@angular/http';
 
 import { DropdownModule, DropdownConfig } from 'ng2-bootstrap';
 
+import { UtilModule } from '../util/util.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { MainContentComponent } from './main-content/main-content.component';
@@ -18,7 +21,11 @@ import { NavigationService } from './navigation.service';
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    HttpModule,
+    FormsModule,
+    ReactiveFormsModule,
+    UtilModule
   ],
   declarations: [
     NavbarComponent,

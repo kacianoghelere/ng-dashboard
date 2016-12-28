@@ -1,5 +1,11 @@
 $icon-font-path: '../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
 
+$brand-primary:         #4f91ab !default;
+$brand-success:         #50ac53 !default;
+$brand-info:            #89c1d6 !default;
+$brand-warning:         #e0b052 !default;
+$brand-danger:          #cf453d !default;
+
 @import "assets/_variables.scss";
 @import "../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 @import "assets/_bootswatch.scss";
@@ -576,24 +582,26 @@ html, body {
     }
   }
 
-  &.full-page .sidebar {
-    width: 0;
+  &.full-page {
+    .sidebar {
+      width: 0;
 
-    @media (max-width: 768px) {
-      height: 0;
-      width: 100%;
-    }
+      @media (max-width: 768px) {
+        height: 0;
+        width: 100%;
+      }
 
-    > .nav-user {
-      display: none;
-    }
+      > .nav-user {
+        display: none;
+      }
 
-    > .nav-search {
-      display: none;
-    }
+      > .nav-search {
+        display: none;
+      }
 
-    > .nav-sidebar {
-      display: none;
+      > .sidebar-tabs {
+        display: none;
+      }
     }
   }
 

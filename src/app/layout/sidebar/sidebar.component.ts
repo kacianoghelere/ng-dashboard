@@ -10,38 +10,15 @@ import { NavigationService } from '../navigation.service';
 })
 export class SidebarComponent implements OnInit, OnChanges {
 
-  items: NavigationNode[] = [];
-  favoritos: NavigationNode[] = [];
   selected: number = 0;
-  search: string = "";
-  favoritesTree: NavigationNode[];
-  navigationTree: NavigationNode[];
 
-  constructor(private navigationService: NavigationService) { }
+  constructor(private service: NavigationService) { }
 
   ngOnInit() {
-    this.items = this.navigationService.items;
-    this.buildTrees();
   }
 
   ngOnChanges() {
     console.log("Algo mudou!");
-  }
-
-  favorites(): NavigationNode[] {
-    return this.navigation().filter(
-      (item) => { return item.favorite || item.routePath === ""; }
-    );
-  }
-
-  navigation(): NavigationNode[] {
-    return this.items.filter(
-      (item) => {
-        let _description = item.description.toLowerCase();
-        let _search = this.search.toLowerCase().trim();
-        return _search === "" || _description.includes(_search);
-      }
-    );
   }
 
   isSelectedTab(index) {
@@ -52,17 +29,11 @@ export class SidebarComponent implements OnInit, OnChanges {
     this.selected = index;
   }
 
-  buildTrees() {
-    let favorites = this.favorites();
-    this.favoritesTree = this.tree(favorites);
-
-    let navigation = this.navigation();
-    this.navigationTree = this.tree(navigation);
+  get search(): string {
+    return this.service.search;
   }
 
-  tree(items: NavigationNode[]): NavigationNode[] {
-    let root = this.navigationService.buildTree(items);
-    console.log(root);
-    return root ? root.children : [];
+  set search(search: string) {
+    this.service.search = search;
   }
 }

@@ -17,6 +17,8 @@ import { MessagesComponent } from './messages/messages.component';
 import { NavigationComponent } from './sidebar/navigation/navigation.component';
 import { LayoutControlService } from './layout-control.service';
 import { NavigationService } from './navigation.service';
+import { SidebarNavigationComponent } from './sidebar/sidebar-navigation/sidebar-navigation.component';
+import { SidebarFavoritesComponent } from './sidebar/sidebar-favorites/sidebar-favorites.component';
 
 @NgModule({
   imports: [
@@ -35,7 +37,9 @@ import { NavigationService } from './navigation.service';
     OptionsPanelComponent,
     ProfileComponent,
     MessagesComponent,
-    NavigationComponent
+    NavigationComponent,
+    SidebarNavigationComponent,
+    SidebarFavoritesComponent
   ],
   exports: [
     NavbarComponent,
@@ -45,7 +49,9 @@ import { NavigationService } from './navigation.service';
     OptionsPanelComponent,
     ProfileComponent,
     MessagesComponent,
-    NavigationComponent
+    NavigationComponent,
+    SidebarNavigationComponent,
+    SidebarFavoritesComponent
   ],
   providers: [DropdownConfig, LayoutControlService, NavigationService]
 })

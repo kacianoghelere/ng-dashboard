@@ -241,7 +241,7 @@ html, body {
   }
   &.inverse {
     @include bright-light;
-    box-shadow: 0px 3px 5px 0 rgba(0,0,0,.2);
+    box-shadow: 0px 3px 5px 0 rgba(0,0,0,.5);
 
     .navbar-brand {
       color: #777;
@@ -326,7 +326,7 @@ html, body {
       padding: 10px;
       /*box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,0.3)  ;*/
       border-bottom: 1px solid #666;
-      text-align: center;
+      text-align: left;
       display: table;
 
       .user-img {
@@ -337,6 +337,7 @@ html, body {
       .user-detail {
         display: table-cell;
         float: left;
+        padding: 0 10px;
         width: 70%;
 
         .user-name {
@@ -769,6 +770,7 @@ html, body {
     transition: width 0.4s;
 
     .options-panel-body {
+      display: none;
       height: 100%;
       max-height: 100%;
       overflow-y: auto;
@@ -779,14 +781,8 @@ html, body {
       }
     }
 
-    &.expanded {
-      width: 256px;
-      @media (max-width: 768px) {
-        width: 100%;
-      }
-    }
-
     .header {
+      display: none;
       float: left;
       width: 100%;
       height: 40px;
@@ -801,6 +797,7 @@ html, body {
     }
 
     .footer {
+      display: none;
       bottom: 0;
       float: left;
       width: 100%;
@@ -820,6 +817,7 @@ html, body {
     }
 
     .list-group {
+      display: none;
       @include shadow-base;
       float: left;
       width: 100%;
@@ -844,6 +842,7 @@ html, body {
     }
 
     .profile {
+      display: none;
       @include shadow-dark;
       float: left;
       width: 100%;
@@ -880,6 +879,29 @@ html, body {
           color: #333;
           font-weight: bold;
         }
+      }
+    }
+
+    &.expanded {
+      width: 256px;
+      @media (max-width: 768px) {
+        width: 100%;
+      }
+
+      .options-panel-body {
+        display: block;
+      }
+      .header {
+        display: block;
+      }
+      .footer {
+        display: block;
+      }
+      .list-group {
+        display: block;
+      }
+      .profile {
+        display: block;
       }
     }
 

@@ -5,6 +5,7 @@ import { NavigationNode } from './sidebar/navigation-node';
 @Injectable()
 export class NavigationService {
 
+  search: string = "";
   private _navItems: NavigationNode[] = [];
 
   constructor() {
@@ -21,31 +22,6 @@ export class NavigationService {
     this._navItems.push(new NavigationNode(17, `Sub-menu 3`, true, "", 16));
   }
 
-  buildTree2(items: NavigationNode[]): NavigationNode {
-    let _items = items.slice(0);
-    let nodeMap = {}, parentNode, root: NavigationNode;
-
-    _items.sort(
-      (a: NavigationNode, b: NavigationNode) => {
-        return a.parent - b.parent;
-      }
-    );
-    for (var i = 0; i < _items.length; i++) {
-      var nav = _items[i];
-      nav.children = [];
-      nodeMap[nav.id] = nav;
-
-      if (typeof nav.parent === "undefined" || nav.parent === null) {
-        root = nav;
-      } else {
-        nodeMap[nav.parent] = nodeMap[nav.parent] || new NavigationNode();
-        parentNode = nodeMap[nav.parent];
-        parentNode.children.push(nav);
-      }
-    }
-    return root;
-  }
-
   buildTree(nodes: NavigationNode[]): NavigationNode {
     let _nodes: NavigationNode[] = this.copy(nodes);
     _nodes.sort(
@@ -60,13 +36,12 @@ export class NavigationService {
       map[node.id] = i; // use map to look-up the parents
       if (typeof node.parent === "undefined" || node.parent === null) {
         root = node;
-        root.parent = this.random(1, 1000000);
       } else {
         _nodes[map[node.parent]] = _nodes[map[node.parent]] || new NavigationNode();
         _nodes[map[node.parent]].children.push(node);
       }
     }
-    return root;
+    return root || new NavigationNode();
   }
 
   copy(items): NavigationNode[] {

@@ -9,7 +9,7 @@ import { NavigationNode } from '../navigation-node';
 })
 export class NavigationComponent implements OnInit {
 
-  private _items: NavigationNode[];
+  @Input('items') items: NavigationNode[];
   @Output('menuChange') emitter: EventEmitter<any>;
 
   constructor() {
@@ -26,23 +26,18 @@ export class NavigationComponent implements OnInit {
     return (item.routePath === "");
   }
 
+  isValid(items: NavigationNode[]): boolean {
+    return items.length > 0;
+  }
+
   toggleExpanded(item: NavigationNode) {
     console.log(item);
     item.expanded = !item.expanded;
-    // this.emitter.emit({item: item.id});
+    this.emitter.emit({item: item.id});
   }
 
   toggleFavorite(item: NavigationNode) {
     item.favorite = !item.favorite;
     this.emitter.emit({item: item.id});
-  }
-
-  get items(): NavigationNode[] {
-    return this._items;
-  }
-
-  @Input('items')
-  set items(items: NavigationNode[]) {
-    this._items = items || [];
   }
 }

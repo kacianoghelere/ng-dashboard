@@ -8,7 +8,7 @@ export class NavigationService {
   private _navItems: NavigationNode[] = [];
 
   constructor() {
-    this._navItems.push(new NavigationNode(0, "", true, ""));
+    this._navItems.push(new NavigationNode(0, "root"));
     for (let i = 1; i < 5; i++) {
       this._navItems.push(new NavigationNode(i, `Teste ${i}`, true, "example/full-template", 16));
     }
@@ -21,13 +21,17 @@ export class NavigationService {
     this._navItems.push(new NavigationNode(17, `Sub-menu 3`, true, "", 16));
   }
 
-  buildTree(items: NavigationNode[]): NavigationNode {
+  buildTree2(items: NavigationNode[]): NavigationNode {
+    let _items = items.slice(0);
     let nodeMap = {}, parentNode, root: NavigationNode;
-    items.sort((a: NavigationNode, b: NavigationNode) => {
-      return a.parent - b.parent;
-    });
-    for (var i = 0; i < items.length; i++) {
-      var nav = items[i];
+
+    _items.sort(
+      (a: NavigationNode, b: NavigationNode) => {
+        return a.parent - b.parent;
+      }
+    );
+    for (var i = 0; i < _items.length; i++) {
+      var nav = _items[i];
       nav.children = [];
       nodeMap[nav.id] = nav;
 
@@ -40,6 +44,33 @@ export class NavigationService {
       }
     }
     return root;
+  }
+
+  buildTree(nodes: NavigationNode[]): NavigationNode {
+    let _nodes: NavigationNode[] = this.copy(nodes);
+    _nodes.sort(
+      (a: NavigationNode, b: NavigationNode) => {
+        return a.parent - b.parent;
+      }
+    );
+    let map = {}, node, root: NavigationNode;
+    for (var i = 0; i < _nodes.length; i++) {
+      node = _nodes[i];
+      node.children = [];
+      map[node.id] = i; // use map to look-up the parents
+      if (typeof node.parent === "undefined" || node.parent === null) {
+        root = node;
+        root.parent = this.random(1, 1000000);
+      } else {
+        _nodes[map[node.parent]] = _nodes[map[node.parent]] || new NavigationNode();
+        _nodes[map[node.parent]].children.push(node);
+      }
+    }
+    return root;
+  }
+
+  copy(items): NavigationNode[] {
+    return <NavigationNode[]> JSON.parse(JSON.stringify(items));
   }
 
   random(min: number, max: number) {

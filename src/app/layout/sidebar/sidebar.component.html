@@ -35,13 +35,13 @@
 
   <div class="tab-content">
     <div class="tab-pane" role="tabpanel" [ngClass]="{active: isSelectedTab(0)}">
-      <label class="label label-danger" for="">navigation</label>
-      <navigation class="navigation" [items]="navigationTree()"></navigation>
+      <navigation class="navigation" [items]="navigationTree"
+          (menuChange)="buildTrees()"></navigation>
     </div>
 
     <div class="tab-pane" role="tabpanel" [ngClass]="{active: isSelectedTab(1)}">
-      <label class="label label-danger" for="">favorites</label>
-      <navigation class="favorites" [items]="favoritesTree()"></navigation>
+      <navigation class="favorites" [items]="favoritesTree"
+          (menuChange)="buildTrees()"></navigation>
     </div>
   </div>
 </div>

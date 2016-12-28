@@ -735,9 +735,11 @@ html, body {
           }
           &.active > a {
             @include bright-lighter;
+            color: #c10d0d;
 
             &:hover {
               @include bright-light;
+              color: #c12a2a;
             }
           }
         }

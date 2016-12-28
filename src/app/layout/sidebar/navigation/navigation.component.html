@@ -1,23 +1,23 @@
 <ul class="nav nav-sidebar">
-  <li *ngFor="let item of items; let i = index"
-      [ngClass]="{item: !isMenu(i), menu: isMenu(i)}"
+  <li *ngFor="let elem of items ; let i = index"
+      [ngClass]="{item: !isMenu(elem), menu: isMenu(elem)}"
       routerLinkActive="active">
-    <a *ngIf="!isMenu(i)" class="item-favorite"
-        (click)="toggleFavorite(i)">
-      <glyph [icon]="item.favorite ? 'star' : 'star-empty'"></glyph>
+    <a *ngIf="!isMenu(elem)" class="item-favorite"
+        (click)="toggleFavorite(elem)">
+      <glyph [icon]="elem.favorite ? 'star' : 'star-empty'"></glyph>
     </a>
-    <a *ngIf="!isMenu(i)" class="item-path" [routerLink]="item.routePath">
-      {{ item.description }}
+    <a *ngIf="!isMenu(elem)" class="item-path" [routerLink]="elem.routePath">
+      {{ elem.description }}
     </a>
-    <a *ngIf="isMenu(i)" class="item-description"
-        (click)="toggleExpanded(i)">
-      {{ item.description }}
-      <div *ngIf="isMenu(i)" class="pull-right">
-        <glyph [icon]="item.expanded ? 'menu-up' : 'menu-right'"></glyph>
+    <a *ngIf="isMenu(elem)" class="item-description"
+        (click)="toggleExpanded(elem)">
+      {{ elem.description }}
+      <div *ngIf="isMenu(elem)" class="pull-right">
+        <glyph [icon]="elem.expanded ? 'menu-up' : 'menu-right'"></glyph>
       </div>
     </a>
 
-    <navigation *ngIf="isMenu(i)" [hidden]="!item.expanded"
-        [items]="item.children"></navigation>
+    <navigation *ngIf="isMenu(elem)" [hidden]="!elem.expanded"
+        [items]="elem.children"></navigation>
   </li>
 </ul>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { NavigationNode } from '../navigation-node';
 
@@ -9,22 +9,40 @@ import { NavigationNode } from '../navigation-node';
 })
 export class NavigationComponent implements OnInit {
 
-  @Input('items') items: NavigationNode[];
+  private _items: NavigationNode[];
+  @Output('menuChange') emitter: EventEmitter<any>;
 
-  constructor() { }
+  constructor() {
+    this.emitter = new EventEmitter();
+  }
 
   ngOnInit() { }
 
-  isMenu(index: number): boolean {
-    return (this.items[index].routePath === "");
+  identify(index, item){
+    return item.id;
   }
 
-  toggleExpanded(index: number) {
-    console.log(this.items[index]);
-    this.items[index].expanded = !this.items[index].expanded;
+  isMenu(item: NavigationNode): boolean {
+    return (item.routePath === "");
   }
 
-  toggleFavorite(index: number) {
-    this.items[index].favorite = !this.items[index].favorite;
+  toggleExpanded(item: NavigationNode) {
+    console.log(item);
+    item.expanded = !item.expanded;
+    // this.emitter.emit({item: item.id});
+  }
+
+  toggleFavorite(item: NavigationNode) {
+    item.favorite = !item.favorite;
+    this.emitter.emit({item: item.id});
+  }
+
+  get items(): NavigationNode[] {
+    return this._items;
+  }
+
+  @Input('items')
+  set items(items: NavigationNode[]) {
+    this._items = items || [];
   }
 }

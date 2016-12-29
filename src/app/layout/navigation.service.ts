@@ -5,7 +5,7 @@ import { NavigationNode } from './sidebar/navigation-node';
 @Injectable()
 export class NavigationService {
 
-  search: string = "";
+  private _search: string = "";
   private _navItems: NavigationNode[] = [];
   @Output('menuChange') emitter: EventEmitter<any>;
 
@@ -79,5 +79,14 @@ export class NavigationService {
     let elem = this.find(id);
     elem.favorite = !elem.favorite;
     this.emitter.emit({item: elem});
+  }
+
+  get search(): string {
+    return this._search;
+  }
+
+  set search(search: string) {
+    this._search = search;
+    this.emitter.emit(null);
   }
 }

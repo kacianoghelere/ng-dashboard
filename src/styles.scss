@@ -25,10 +25,12 @@ $brand-danger:          #cf453d !default;
 }
 
 $shadow-base:            #696969 !default;
+$shadow-deep:            darken($shadow-base, 20%) !default;
 $shadow-darker:          darken($shadow-base, 15%) !default;
 $shadow-dark:            darken($shadow-base, 10%) !default;
 $shadow-light:           lighten($shadow-base, 10%) !default;
 $shadow-lighter:         lighten($shadow-base, 15%) !default;
+$shadow-shiny:       lighten($shadow-base, 20%) !default;
 
 @mixin shadow-base {
   background-color: $shadow-base;
@@ -36,6 +38,10 @@ $shadow-lighter:         lighten($shadow-base, 15%) !default;
 }
 @mixin shadow-darker {
   background-color: $shadow-darker;
+  color: #E4E4E4;
+}
+@mixin shadow-deep {
+  background-color: $shadow-deep;
   color: #E4E4E4;
 }
 @mixin shadow-dark {
@@ -50,16 +56,26 @@ $shadow-lighter:         lighten($shadow-base, 15%) !default;
   background-color: $shadow-lighter;
   color: #EEE;
 }
+@mixin shadow-shiny {
+  background-color: $shadow-shiny;
+  color: #EEE;
+}
 
 $bright-base:            #BFBFBF !default;
+$bright-deep:            darken($bright-base, 20%) !default;
 $bright-darker:          darken($bright-base, 15%) !default;
 $bright-dark:            darken($bright-base, 10%) !default;
 $bright-light:           lighten($bright-base, 10%) !default;
 $bright-lighter:         lighten($bright-base, 15%) !default;
+$bright-shiny:       lighten($bright-base, 20%) !default;
 
 @mixin bright-base {
   background-color: $bright-base;
   color: #333;
+}
+@mixin bright-deep {
+  background-color: $bright-deep;
+  color: #383838;
 }
 @mixin bright-darker {
   background-color: $bright-darker;
@@ -77,6 +93,10 @@ $bright-lighter:         lighten($bright-base, 15%) !default;
   background-color: $bright-lighter;
   color: #484848;
 }
+@mixin bright-shiny {
+  background-color: $bright-shiny;
+  color: #525252;
+}
 
 .color-display {
   padding: 10px 15px;
@@ -84,6 +104,9 @@ $bright-lighter:         lighten($bright-base, 15%) !default;
 
 .shadow-base-bg {
   @include shadow-base;
+}
+.shadow-deep-bg {
+  @include shadow-deep;
 }
 .shadow-darker-bg {
   @include shadow-darker;
@@ -97,9 +120,15 @@ $bright-lighter:         lighten($bright-base, 15%) !default;
 .shadow-lighter-bg {
   @include shadow-lighter;
 }
+.shadow-shiny-bg {
+  @include shadow-shiny;
+}
 
 .bright-base-bg {
   @include bright-base;
+}
+.bright-deep-bg {
+  @include bright-deep;
 }
 .bright-darker-bg {
   @include bright-darker;
@@ -112,6 +141,9 @@ $bright-lighter:         lighten($bright-base, 15%) !default;
 }
 .bright-lighter-bg {
   @include bright-lighter;
+}
+.bright-shiny-bg {
+  @include bright-shiny;
 }
 
 /* You can add global styles to this file, and also import other style files */
@@ -534,7 +566,7 @@ html, body {
 
       /* Sidebar navigation */
       .nav-sidebar {
-        @include bright-base;
+        @include bright-light;
 
         li {
           color: #555;
@@ -543,26 +575,17 @@ html, body {
           > a {
             &.item-favorite {
               @include bright-base;
-
-              &:hover {
-                @include bright-dark;
-              }
             }
           }
           a {
             @include bright-light;
-
-            &:hover,
-            &:focus {
-              background-color: transparent;
-            }
           }
           &.active {
             a {
-              @include bright-light;
+              @include bright-light
 
               &.item-favorite {
-                @include bright-base;
+                @include bright-base
                 color: #333;
 
                 &:hover {
@@ -570,16 +593,48 @@ html, body {
                 }
               }
             }
-            a:hover {
-              @include bright-lighter;
-            }
+
             a:focus {
               @include bright-base;
             }
           }
+          &:hover {
+            > a {
+              &.item-favorite {
+                @include bright-dark;
+              }
+            }
+            &.active {
+              a {
+                @include bright-lighter;
+              }
+            }
+          }
+        }
+        .nav-sidebar {
+          li {
+            > a {
+              &:hover,
+              &:focus {
+                background-color: transparent;
+              }
 
-          .nav-sidebar {
-            @include bright-lighter;
+              &.item-favorite {
+                @include bright-light;
+
+                &:hover {
+                  @include bright-base;
+                }
+              }
+            }
+            a {
+              @include bright-lighter;
+
+              &:hover,
+              &:focus {
+                @include bright-light;
+              }
+            }
           }
         }
       }

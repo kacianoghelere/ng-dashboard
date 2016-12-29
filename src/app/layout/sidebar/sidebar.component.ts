@@ -10,6 +10,7 @@ import { NavigationService } from '../navigation.service';
 })
 export class SidebarComponent implements OnInit, OnChanges {
 
+  private _search: string = "";
   selected: number = 0;
 
   constructor(private service: NavigationService) { }
@@ -30,10 +31,11 @@ export class SidebarComponent implements OnInit, OnChanges {
   }
 
   get search(): string {
-    return this.service.search;
+    return this._search;
   }
 
   set search(search: string) {
-    this.service.search = search;
+    this._search = search;
+    this.service.search = this._search;
   }
 }

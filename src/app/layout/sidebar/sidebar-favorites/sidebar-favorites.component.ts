@@ -18,20 +18,9 @@ export class SidebarFavoritesComponent implements OnInit {
     this.initialize();
     this.service.emitter.subscribe((item) => this.initialize());
   }
-
-  evento(event: any = {}) {
-    console.log("favorites initialized =>", event);
-  }
-
   initialize(event: any = {}) {
     let filter = this.filter();
-    console.log("favorites initialized =>", event);
     this.favorites = this.service.copy(filter);
-    // this.favorites.sort(
-    //   (a: NavigationNode, b: NavigationNode) => {
-    //     return a.id - b.id;
-    //   }
-    // );
   }
 
   private filter(): NavigationNode[] {

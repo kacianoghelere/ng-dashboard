@@ -19,13 +19,8 @@ export class SidebarNavigationComponent implements OnInit {
     this.service.emitter.subscribe((item) => this.initialize());
   }
 
-  evento(event: any = {}) {
-    console.log("navigation initialized =>", event);
-  }
-
   initialize(event: any = {}) {
     let filter = this.filter();
-    console.log("navigation initialized =>", event);
     this.navigation = this.service.buildTree(filter).children;
   }
 

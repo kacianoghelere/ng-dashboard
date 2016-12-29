@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 
-import { AppRoutingModule } from './app.routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UtilModule } from './util/util.module';
 import { MainModule } from './main/main.module';
@@ -25,7 +25,7 @@ import { LayoutModule } from './layout/layout.module';
     ExampleModule,
     LayoutModule
   ],
-  declarations: [AppComponent],
-  bootstrap: [AppComponent]
+  declarations: [ AppComponent ],
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }

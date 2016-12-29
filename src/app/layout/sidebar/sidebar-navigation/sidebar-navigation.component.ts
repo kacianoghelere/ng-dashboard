@@ -11,23 +11,25 @@ import { NavigationService } from '../../navigation.service';
 export class SidebarNavigationComponent implements OnInit {
 
   navigation: NavigationNode[];
-  @Input('search') search: string;
 
   constructor(private service: NavigationService) { }
 
   ngOnInit() {
+    this.initialize();
+    this.service.emitter.subscribe((item) => this.initialize());
+  }
+
+  evento(event: any = {}) {
+    console.log("navigation initialized =>", event);
+  }
+
+  initialize(event: any = {}) {
     let filter = this.filter();
-    console.log("navigation =>", filter);
+    console.log("navigation initialized =>", event);
     this.navigation = this.service.buildTree(filter).children;
   }
 
   private filter(): NavigationNode[] {
-    return this.service.items.filter(
-      (item) => {
-        let _description = item.description.toLowerCase();
-        let _search = this.service.search.toLowerCase().trim();
-        return _search === "" || _description.includes(_search);
-      }
-    );
+    return this.service.items;
   }
 }

@@ -35,11 +35,10 @@
 
   <div class="tab-content">
     <div class="tab-pane" role="tabpanel" [ngClass]="{active: isSelectedTab(0)}">
-      <sidebar-navigation [search]="search"></sidebar-navigation>
+      <sidebar-navigation></sidebar-navigation>
     </div>
-
     <div class="tab-pane" role="tabpanel" [ngClass]="{active: isSelectedTab(1)}">
-      <sidebar-favorites [search]="search"></sidebar-favorites>
+      <sidebar-favorites></sidebar-favorites>
     </div>
   </div>
 </div>

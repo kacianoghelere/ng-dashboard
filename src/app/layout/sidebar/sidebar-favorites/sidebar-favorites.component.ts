@@ -11,25 +11,32 @@ import { NavigationService } from '../../navigation.service';
 export class SidebarFavoritesComponent implements OnInit {
 
   favorites: NavigationNode[];
-  @Input('search') search: string;
 
   constructor(private service: NavigationService) { }
 
   ngOnInit() {
+    this.initialize();
+    this.service.emitter.subscribe((item) => this.initialize());
+  }
+
+  evento(event: any = {}) {
+    console.log("favorites initialized =>", event);
+  }
+
+  initialize(event: any = {}) {
     let filter = this.filter();
-    console.log("favorites =>", filter);
-    this.favorites = this.service.buildTree(filter).children;
+    console.log("favorites initialized =>", event);
+    this.favorites = this.service.copy(filter);
+    // this.favorites.sort(
+    //   (a: NavigationNode, b: NavigationNode) => {
+    //     return a.id - b.id;
+    //   }
+    // );
   }
 
   private filter(): NavigationNode[] {
     return this.service.items.filter(
-      (item) => {
-        let _description = item.description.toLowerCase();
-        let _search = this.service.search.toLowerCase().trim();
-        return _search === "" || _description.includes(_search);
-      }
-    ).filter(
-      (item) => { return item.favorite || item.routePath === ""; }
+      (item) => { return item.favorite && item.routePath !== ""; }
     );
   }
 }

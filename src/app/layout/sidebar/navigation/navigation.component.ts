@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { NavigationNode } from '../navigation-node';
+import { NavigationService } from '../../navigation.service';
 
 @Component({
   selector: 'navigation',
@@ -10,17 +11,10 @@ import { NavigationNode } from '../navigation-node';
 export class NavigationComponent implements OnInit {
 
   @Input('items') items: NavigationNode[];
-  @Output('menuChange') emitter: EventEmitter<any>;
 
-  constructor() {
-    this.emitter = new EventEmitter();
-  }
+  constructor(private service: NavigationService) { }
 
   ngOnInit() { }
-
-  identify(index, item){
-    return item.id;
-  }
 
   isMenu(item: NavigationNode): boolean {
     return (item.routePath === "");
@@ -31,13 +25,10 @@ export class NavigationComponent implements OnInit {
   }
 
   toggleExpanded(item: NavigationNode) {
-    console.log(item);
-    item.expanded = !item.expanded;
-    this.emitter.emit({item: item.id});
+    this.service.toggleExpanded(item.id);
   }
 
   toggleFavorite(item: NavigationNode) {
-    item.favorite = !item.favorite;
-    this.emitter.emit({item: item.id});
+    this.service.toggleFavorite(item.id);
   }
 }

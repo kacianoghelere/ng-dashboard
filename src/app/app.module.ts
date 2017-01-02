@@ -17,13 +17,13 @@ import { LayoutModule } from './layout/layout.module';
     BrowserModule,
     HttpModule,
     RouterModule,
-    AppRoutingModule,
     UtilModule,
     Bs3Module,
     UserModule,
     MainModule,
     ExampleModule,
-    LayoutModule
+    LayoutModule,
+    AppRoutingModule // Modulo de routing sempre por ultimo, pra evitar tretas
   ],
   declarations: [ AppComponent ],
   bootstrap: [ AppComponent ]
